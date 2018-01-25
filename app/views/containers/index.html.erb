@@ -21,17 +21,33 @@
       <% end %>
     </td>
     <td> <%= container['Status'] %> </td>
-    <td>
-      <%= button_to 'Start' , container_start_path(:id => container['Id'] ), method: 'post',   :class => 'btn btn-success', remote: false %>
-    </td>
-    <td>
-      <%= button_to 'Stop'  , container_stop_path(:id => container['Id'] ),  method: 'post',   :class => 'btn btn-primary', remote: false, onClick: "return confirmAction()" %>
-    </td>
-    <td>
-      <%= button_to 'Kill'  , container_kill_path(:id => container['Id'] ),  method: 'post',   :class => 'btn btn-warning', remote: false, onClick: "return confirmAction()" %>
-    </td>
-    <td>
+    <td class="centered left-ligne">
+      <% if container['State'] == 'exited' %>
       <%= button_to 'Delete', container_delete_path(:id => container['Id'] ), method: 'post', :class => 'btn btn-danger', remote: false, onClick: "return confirmAction()" %>
+      <% else %>
+      <span>-</span>
+      <% end %>
+    </td>
+    <td class="centered">
+      <% if container['State'] == 'exited' %>
+      <%= button_to 'Start' , container_start_path(:id => container['Id'] ), method: 'post',   :class => 'btn btn-success', remote: false %>
+      <% else %>
+      <span>-</span>
+      <% end %>
+    </td>
+    <td class="centered">
+      <% if container['State'] == 'running' %>
+      <%= button_to 'Stop'  , container_stop_path(:id => container['Id'] ),  method: 'post',   :class => 'btn btn-primary', remote: false, onClick: "return confirmAction()" %>
+      <% else %>
+      <span>-</span>
+      <% end %>
+    </td>
+    <td class="centered">
+      <% if container['State'] == 'running' %>
+      <%= button_to 'Kill'  , container_kill_path(:id => container['Id'] ),  method: 'post',   :class => 'btn btn-warning', remote: false, onClick: "return confirmAction()" %>
+      <% else %>
+      <span>-</span>
+      <% end %>
     </td>
   </tr>
   <% end %>

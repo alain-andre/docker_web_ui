@@ -16,3 +16,7 @@ gem 'spring',        group: :development
 
 gem 'unicorn'   , '~> 5.1.0'
 gem 'docker-api', '1.28.0'
+
+group :development, :test do
+  gem 'byebug'
+end
